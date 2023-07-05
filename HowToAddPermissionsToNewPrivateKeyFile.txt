@@ -1,0 +1,10 @@
+$filePath = "C:\Terraform\GitHub\linux.pem"
+$accountName = "ver qual é o user account "whoami""
+
+
+$acl = New-Object System.Security.AccessControl.FileSecurity
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($accountName, "FullControl", "Allow")
+$acl.SetAccessRule($accessRule)
+
+# Set the modified ACL on the file or folder
+Set-Acl -Path $filePath -AclObject $acl
