@@ -1,7 +1,5 @@
 data "azurerm_resource_group" "rgname" {
   name = "${var.azure_system_name}-rg-${var.vm_environment}"
-
-  depends_on = [module.newrg]
 }
 
 data "azurerm_subnet" "selected" {
@@ -23,20 +21,14 @@ data "azurerm_key_vault_secret" "keyvaultsecret" {
 data "azurerm_application_security_group" "asgselected" {
   name                = "${var.azure_system_name}-asg-${var.vm_subnet}-${var.vm_environment}"
   resource_group_name = "${var.azure_system_name}-rg-${var.vm_environment}"
-
-  depends_on = [module.newrg]
 }
 
 data "azurerm_application_security_group" "asgpublic" {
   name                = "${var.azure_system_name}-asg-public-${var.vm_environment}"
   resource_group_name = "${var.azure_system_name}-rg-${var.vm_environment}"
-
-  depends_on = [module.newrg]
 }
 
 data "azurerm_application_security_group" "asgprivate" {
   name                = "${var.azure_system_name}-asg-private-${var.vm_environment}"
   resource_group_name = "${var.azure_system_name}-rg-${var.vm_environment}"
-
-  depends_on = [module.newrg]
 }

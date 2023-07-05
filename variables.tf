@@ -214,7 +214,7 @@ variable "vm_ssh_public_key" {
 variable "vm_join_ad" {
   type        = bool
   description = "Join this VM to the AD ?"
-  default     = true
+  default     = false
 }
 
 variable "vm_application_security_group_id" {

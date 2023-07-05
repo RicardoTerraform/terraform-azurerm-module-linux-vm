@@ -79,7 +79,6 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
   tags       = merge(var.vm_tags, local.tags_default)
   depends_on = [azurerm_network_interface.vm_nic]
 
-
 }
 
 resource "azurerm_virtual_machine" "azurevmold" {
@@ -142,8 +141,6 @@ resource "azurerm_virtual_machine" "azurevmold" {
 depends_on = [azurerm_network_interface.vm_nic]
 }
 
-
-
 resource "azurerm_virtual_machine_extension" "adjoin" {
 
   count = var.vm_join_ad ? 1 : 0
@@ -170,5 +167,4 @@ SETTINGS
 }
 SETTINGS
 
-  depends_on = [module.newrg]
 }
