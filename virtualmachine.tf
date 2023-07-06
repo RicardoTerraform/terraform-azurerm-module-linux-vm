@@ -42,7 +42,7 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
     name                 = "${var.azure_system_name}-${var.vm_name}-osdisk-${var.vm_environment}"
     caching              = var.vm_os_disk_caching
     storage_account_type = var.vm_os_disk_storage_account_type
-    disk_size_gb         = var.vm_os_disk_size_gb
+    disk_size_gb         = var.os_disk_size_gb == null ? null : split("_", var.os_disk_storage_account_type)[0] != "PremiumV2" ? [for size in local.disks_tiers[split("_", var.os_disk_storage_account_type)[0]] : size if size >= var.os_disk_size_gb][0] : var.os_disk_size_gb
   }
 
   #About VM Spot - we can turn it true to dev VM - sem SLA mas podemos poupar dinheiro
