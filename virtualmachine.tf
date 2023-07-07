@@ -19,7 +19,7 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
       version   = var.vm_image["version"]
     }
   }
-  
+
   #you are deploying a virtual machine from a Marketplace image or a custom image originating from a Marketplace image
   dynamic "plan" {
     for_each = var.vm_plan != null ? ["true"] : []
@@ -54,9 +54,9 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
   patch_mode            = var.vm_patch_mode
   patch_assessment_mode = var.vm_patch_mode == "AutomaticByPlatform" ? var.vm_patch_mode : "ImageDefault"
 
-  admin_username = var.vm_admin_username
+  admin_username                  = var.vm_admin_username
   disable_password_authentication = var.vm_admin_password != null ? false : true
-  admin_password = var.vm_admin_password
+  admin_password                  = var.vm_admin_password
   dynamic "admin_ssh_key" {
     for_each = var.vm_ssh_public_key != null ? ["true"] : []
     content {
@@ -131,14 +131,14 @@ resource "azurerm_virtual_machine" "azurevmold" {
     }
   }
   ###############################################
- 
+
   os_profile_linux_config {
     disable_password_authentication = var.vm_admin_password != null ? false : true
   }
 
 
-  tags = merge(var.vm_tags, local.tags_default)
-depends_on = [azurerm_network_interface.vm_nic]
+  tags       = merge(var.vm_tags, local.tags_default)
+  depends_on = [azurerm_network_interface.vm_nic]
 }
 
 resource "azurerm_virtual_machine_extension" "adjoin" {

@@ -51,7 +51,7 @@ variable "vm_plan" {
     publisher = string
   })
   description = "Virtual Machine plan image information. See https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#plan. This variable has to be used for BYOS image. Before using BYOS image, you need to accept legal plan terms. See https://docs.microsoft.com/en-us/cli/azure/vm/image?view=azure-cli-latest#az_vm_image_accept_terms."
-  default = null
+  default     = null
 }
 
 #az vm image list
